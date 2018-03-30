@@ -22,7 +22,7 @@ RUN pip install -r requirements.txt
 
 RUN mkdir -p /tmp/screenshot
 WORKDIR /tmp/screenshot
-ADD screenshot.py /tmp/screenshot
+ADD screenshot.py /tmp/
 
-ENTRYPOINT ["python", "screenshot.py"]
+ENTRYPOINT ["python", "/tmp/screenshot.py"]
 CMD ["--help"]
