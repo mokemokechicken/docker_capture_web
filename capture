@@ -11,4 +11,4 @@ else
     echo "'$i'"
   done
 fi
-) | xargs docker run -v `pwd`:/tmp/screenshot capture_web
+) | xargs docker run -v `pwd`:/tmp/screenshot mokemokechicken/capture_web
