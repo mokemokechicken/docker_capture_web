@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+Name=mokemokechicken/capture_web
+
+docker build -t "$Name" .

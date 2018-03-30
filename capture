@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+cd $(dirname $0)
+
+(
+if [ $# -eq 0 ]; then
+  echo "--help"
+else
+  for i;
+  do
+    echo "'$i'"
+  done
+fi
+) | xargs docker run -v `pwd`:/tmp/screenshot capture_web
