@@ -62,9 +62,10 @@ def capture_full_screenshot(url, filename, window_size=None, user_agent=None, wa
     options = webdriver.ChromeOptions()
     options.set_headless()
     options.add_argument('--no-sandbox')
+    desired_capabilities = dict(acceptInsecureCerts=True)
     if user_agent:
         options.add_argument(f"user-agent={user_agent}")
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(options=options, desired_capabilities=desired_capabilities)
 
     if window_size:
         driver.set_window_size(window_size[0], window_size[1])
