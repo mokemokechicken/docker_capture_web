@@ -81,6 +81,12 @@ def capture_full_screenshot(url, filename, window_size=None, user_agent=None, wa
 
 
 def capture_screen_area(driver: webdriver.Chrome, filename, client_info: ClientInfo, wait):
+    for y_pos in range(0, client_info.full_height - client_info.window_height, 300):
+        scroll_to(driver, 0, y_pos)
+        sleep(wait or 0.2)
+
+    client_info = get_client_info(driver)
+
     y_pos = client_info.full_height - client_info.window_height
     x_delta = client_info.window_width
     y_delta = client_info.window_height - 200
