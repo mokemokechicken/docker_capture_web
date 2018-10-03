@@ -112,7 +112,7 @@ def capture_screen_area(driver: webdriver.Chrome, filename, client_info: ClientI
 def prepare_capture(driver):
     driver.execute_script('''
         document.body.style.overflowY = 'visible';
-        document.documentElement.style.overflow = 'hidden';
+        // document.documentElement.style.overflow = 'hidden';
     ''')
 
 
