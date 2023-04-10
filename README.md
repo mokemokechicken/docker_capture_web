@@ -1,46 +1,66 @@
-About
-=======
+# About
 
 Webページ全体のScreenShot画像を取得するDockerコンテナです。
 Google Chromeのheadlessを使っています。
 縦長のWebページでもだいたい上手くScreenShotをとることができます。
 固定ヘッダーがあっても概ね大丈夫ですが、固定フッターはおそらく変な結果になると思います。
 
-Requirements
-------------
+A Docker container that captures a fullpage screenshot of any given webpage.
+Uses Google Chrome in headless mode.
+Works well even with vertically long webpages.
+Webpages with fixed headers generally work well, but fixed footers may lead to unusual results.
+
+## Requirements
+
 以下の環境で動作を確認しています。
 
-* macOS High Sierra 0.13.3
+Tested on the following environments
+
+### macOS
+
+* macOS High Sierra 10.13.3
 * Docker Community Edition Version 18.03.0-ce-mac59
 
-How To Use
-=========
+### Linux
+
+* Linux 6.1
+* Docker Version 23.0.1, build a5ee5b1dfc
+
+## How To Use
+
+### Build
+
+```bash
+./build
+```
+
+Then either run
 
 ```bash
 docker run -v `pwd`:/tmp/screenshot mokemokechicken/capture_web <URL> <output_image.png> [options]
 ```
 
-or
+or run
 
 ```bash
 ./capture <URL> <output_image.png> [options]
 ```
 
-例
-----
+## Examples
 
 ### PC
+
 ```bash
 docker run -v `pwd`:/tmp/screenshot mokemokechicken/capture_web "https://www.yahoo.co.jp/" yahoo_pc.png
 ```
 
 ### iPhone
+
 ```bash
 docker run -v `pwd`:/tmp/screenshot mokemokechicken/capture_web "https://www.yahoo.co.jp/" yahoo_sp.png -w 414x735 --ua 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
 ```
 
-HELP
-----
+## Help
 
 ```bash
 % docker run -v `pwd`:/tmp/screenshot mokemokechicken/capture_web
@@ -59,11 +79,4 @@ optional arguments:
   --wait WAIT      specify wait seconds after scroll
   -v               set LogLevel to INFO
   --vv             set LogLevel to DEBUG
-```
-
-How To Build
-===========
-
-```bash
-./build
 ```
