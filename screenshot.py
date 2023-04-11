@@ -48,7 +48,7 @@ def main():
     parser = args_parser()
     args = parser.parse_args()
     if args.window_size:
-        window_size = [int(x) for x in args.window_size.split("x")]
+        window_size = tuple(int(x) for x in args.window_size.split("x"))
     else:
         window_size = (1200, 800)
 
@@ -89,12 +89,11 @@ def capture_full_screenshot(
     desired_capabilities = dict(acceptInsecureCerts=True)
     if user_agent:
         options.add_argument(f"user-agent={user_agent}")
+    if window_size:
+        options.add_argument(f"window-size={window_size[1]},{window_size[0]}")
     driver = webdriver.Chrome(
         options=options, desired_capabilities=desired_capabilities
     )
-
-    if window_size:
-        options.add_argument(f"window-size={window_size[0]},{window_size[1]}")
 
     driver.get(url)
     prepare_capture(driver)

@@ -37,7 +37,7 @@ Tested on the following environments
 Then either run
 
 ```bash
-docker run -v `pwd`:/tmp/screenshot mokemokechicken/capture_web <URL> <output_image.png> [options]
+docker run --rm -v `pwd`:/tmp/screenshot -v /dev/shm:/dev/shm mokemokechicken/capture_web <URL> <output_image.png> [options]
 ```
 
 or run
@@ -51,19 +51,19 @@ or run
 ### PC
 
 ```bash
-docker run -v `pwd`:/tmp/screenshot mokemokechicken/capture_web "https://www.yahoo.co.jp/" yahoo_pc.png
+docker run --rm -v `pwd`:/tmp/screenshot -v /dev/shm:/dev/shm mokemokechicken/capture_web "https://www.yahoo.co.jp/" yahoo_pc.png
 ```
 
 ### iPhone
 
 ```bash
-docker run -v `pwd`:/tmp/screenshot mokemokechicken/capture_web "https://www.yahoo.co.jp/" yahoo_sp.png -w 414x735 --ua 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
+docker run --rm -v `pwd`:/tmp/screenshot -v /dev/shm:/dev/shm mokemokechicken/capture_web "https://www.yahoo.co.jp/" yahoo_sp.png -w 414x735 --ua 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
 ```
 
 ## Help
 
 ```bash
-% docker run -v `pwd`:/tmp/screenshot mokemokechicken/capture_web
+% docker run --rm -v `pwd`:/tmp/screenshot -v /dev/shm:/dev/shm mokemokechicken/capture_web
 usage: screenshot.py [-h] [-w WINDOW_SIZE] [--ua USER_AGENT] [--wait WAIT]
                      [-v] [--vv]
                      url filename
