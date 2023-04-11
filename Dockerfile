@@ -6,7 +6,7 @@ ENV PYTHONUNBUFFERED True
 WORKDIR /tmp
 
 RUN apt-get update
-RUN apt-get install -y wget dpkg
+RUN apt-get -y install wget dpkg
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
