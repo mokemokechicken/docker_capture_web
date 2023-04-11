@@ -11,8 +11,6 @@ RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.d
 RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
 RUN apt-get -y install fonts-ipafont-gothic fonts-ipafont-mincho
-ENV LANG=ja_JP.UTF-8
-ENV LANGUAGE="ja_JP:ja"
 
 ADD requirements.txt /tmp/
 RUN pip install --no-cache-dir -r /tmp/requirements.txt

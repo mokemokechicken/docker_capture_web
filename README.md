@@ -64,19 +64,21 @@ docker run --rm -v `pwd`:/tmp/screenshot -v /dev/shm:/dev/shm mokemokechicken/ca
 
 ```bash
 % docker run --rm -v `pwd`:/tmp/screenshot -v /dev/shm:/dev/shm mokemokechicken/capture_web
-usage: screenshot.py [-h] [-w WINDOW_SIZE] [--ua USER_AGENT] [--wait WAIT]
+usage: screenshot.py [-h] [-w WINDOW_SIZE] [--ua USER_AGENT] [--wait WAIT] [--lang LANG] [--language LANGUAGE]
                      [-v] [--vv]
                      url filename
 
 positional arguments:
-  url              specify URL
-  filename         specify capture image filename
+  url                  specify URL
+  filename             specify capture image filename
 
 optional arguments:
-  -h, --help       show this help message and exit
-  -w WINDOW_SIZE   specify window size like 1200x800
-  --ua USER_AGENT  specify user-agent
-  --wait WAIT      specify wait seconds after scroll
-  -v               set LogLevel to INFO
-  --vv             set LogLevel to DEBUG
+  -h, --help           show this help message and exit
+  -w WINDOW_SIZE       specify window size like 1200x800
+  --ua USER_AGENT      specify user-agent
+  --wait WAIT          specify wait seconds after scroll
+  --lang LANG          set LANG environment variable
+  --language LANGUAGE  set LANGUAGE environment variable
+  -v                   set LogLevel to INFO
+  --vv                 set LogLevel to DEBUG
 ```

@@ -4,6 +4,7 @@ Thanks
 https://github.com/mrcoles/full-page-screen-capture-chrome-extension/blob/master/page.js
 """
 
+import os
 from argparse import ArgumentParser
 from collections import namedtuple
 from io import BytesIO
@@ -36,6 +37,20 @@ def args_parser():
         default=0.2,
     )
     parser.add_argument(
+        "--lang",
+        help="set LANG environment variable",
+        dest="lang",
+        type=str,
+        default="ja_JP.UTF-8",
+    )
+    parser.add_argument(
+        "--language",
+        help="set LANGUAGE environment variable",
+        dest="language",
+        type=str,
+        default="ja_JP:ja",
+    )
+    parser.add_argument(
         "-v", help="set LogLevel to INFO", dest="log_info", action="store_true"
     )
     parser.add_argument(
@@ -47,6 +62,10 @@ def args_parser():
 def main():
     parser = args_parser()
     args = parser.parse_args()
+    if args.lang:
+        os.environ["LANG"] = args.lang
+    if args.language:
+        os.environ["LANGUAGE"] = args.language
     if args.window_size:
         window_size = tuple(int(x) for x in args.window_size.split("x"))
     else:
