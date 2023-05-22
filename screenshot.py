@@ -19,6 +19,7 @@ ClientInfo = namedtuple(
     "ClientInfo", "full_width full_height window_width window_height"
 )
 logger = getLogger(__name__)
+logger.setLevel("INFO")
 
 
 def args_parser():
@@ -115,6 +116,7 @@ def capture_full_screenshot(
     )
 
     driver.get(url)
+    driver.implicitly_wait(5)
     prepare_capture(driver)
     client_info = get_client_info(driver)
 
