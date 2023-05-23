@@ -1,24 +1,19 @@
-FROM python:3.6.4
+FROM python:3.11-slim
 MAINTAINER mokemokechicken@gmail.com
+
+ENV PYTHONUNBUFFERED True
 
 WORKDIR /tmp
 
-RUN sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' && \
-    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-    apt-get update && \
-    apt-get install -y google-chrome-stable
-
-RUN apt-get install -y unzip && \
-    curl -LO https://chromedriver.storage.googleapis.com/2.37/chromedriver_linux64.zip && \
-    unzip chromedriver_linux64.zip && \
-    mv chromedriver /usr/local/bin/
+RUN apt-get update
+RUN apt-get -y install wget dpkg
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
 RUN apt-get -y install fonts-ipafont-gothic fonts-ipafont-mincho
-ENV LANG=ja_JP.UTF-8
-ENV LANGUAGE="ja_JP:ja"
 
 ADD requirements.txt /tmp/
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 RUN mkdir -p /tmp/screenshot
 WORKDIR /tmp/screenshot
