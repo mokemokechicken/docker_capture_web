@@ -14,6 +14,7 @@ from time import sleep
 from PIL import Image
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 ClientInfo = namedtuple(
     "ClientInfo", "full_width full_height window_width window_height"
@@ -104,15 +105,15 @@ def capture_full_screenshot(
     :return:
     """
     options = Options()
-    options.add_argument("--headless")
+    options.add_argument("--headless=new")
     options.add_argument("--no-sandbox")
-    desired_capabilities = dict(acceptInsecureCerts=True)
+    options.set_capability("acceptInsecureCerts", True)
     if user_agent:
         options.add_argument(f"user-agent={user_agent}")
     if window_size:
         options.add_argument(f"window-size={window_size[1]},{window_size[0]}")
     driver = webdriver.Chrome(
-        options=options, desired_capabilities=desired_capabilities
+        service=Service("/usr/local/bin/chromedriver"), options=options
     )
 
     driver.get(url)
